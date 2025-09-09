@@ -2,12 +2,12 @@
 function Header() {
     return (
         <header style={{ 
-            backgroundColor: '#282c34', 
+            backgroundColor: '#b35a11ff', 
             padding: '16px', 
             color: 'white', 
             textAlign: 'center' 
         }}>
-            <h1>WMS Dashboard</h1>
+            <h1>WMS PREMIUM</h1>
         </header>
     );
 }
