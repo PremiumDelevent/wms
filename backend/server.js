@@ -13,7 +13,7 @@ const clientSecret = process.env.CLIENT_SECRET;
 const bcEnvironment = process.env.BC_ENVIRONMENT;
 const companyId = process.env.BC_COMPANY_ID;
 
-// ✅ Función equivalente a la de WP
+// ✅ Función acceso token Business Central
 async function getBcAccessToken() {
   const url = `https://login.microsoftonline.com/${tenantId}/oauth2/v2.0/token`;
 
@@ -32,7 +32,7 @@ async function getBcAccessToken() {
   }
 }
 
-// ✅ Función para obtener productos desde Business Central
+// ✅ Función para obtener productos Business Central
 async function getBcProducts() {
   const token = await getBcAccessToken();
   if (!token) {
@@ -48,7 +48,7 @@ async function getBcProducts() {
         Authorization: `Bearer ${token}`,
         Accept: "application/json",
       },
-      timeout: 60000, // 60 segundos
+      timeout: 60000,
     });
 
     const data = response.data;
@@ -59,6 +59,7 @@ async function getBcProducts() {
   }
 }
 
+// ✅ Función para obtener lineas de venta Business Central
 async function getBcSalesLines() {
   const token = await getBcAccessToken();
   if (!token) {
@@ -72,7 +73,7 @@ async function getBcSalesLines() {
         Authorization: `Bearer ${token}`,
         Accept: "application/json",
       },
-      timeout: 60000, // 60 segundos
+      timeout: 60000,
     });
 
     const data = response.data;
@@ -86,7 +87,7 @@ async function getBcSalesLines() {
 // ✅ Middleware CORS
 app.use(cors());
 
-// Endpoint de prueba
+// Endpoint hello world
 app.get("/api/hello", (_req, res) => {
   res.json({ message: "Hola desde el backend 👋" });
 });
