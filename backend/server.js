@@ -91,15 +91,6 @@ app.get("/api/hello", (_req, res) => {
   res.json({ message: "Hola desde el backend 👋" });
 });
 
-// ✅ Endpoint de prueba del token
-app.get("/api/token", async (_req, res) => {
-  const token = await getBcAccessToken();
-  if (!token) {
-    return res.status(500).json({ error: "No se pudo obtener el token" });
-  }
-  res.json({ access_token: token });
-});
-
 // Endpoint para obtener productos
 app.get("/api/products", async (_req, res) => {
   const products = await getBcProducts();
