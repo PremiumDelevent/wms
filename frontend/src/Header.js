@@ -2,12 +2,17 @@
 function Header() {
     return (
         <header style={{ 
-            backgroundColor: '#b35a11ff', 
+            backgroundColor: '#ffffffff', 
             padding: '16px', 
-            color: 'white', 
+            color: 'black', 
             textAlign: 'center' 
         }}>
-            <h1>WMS PREMIUM</h1>
+            <img src="/logo_premium.svg" alt="WMS Premium Logo" style={{ height: '40px', verticalAlign: 'middle', marginRight: '10px' }} />
+            <nav style={{ verticalAlign: 'middle' }}>
+                <a href="#home" style={{ margin: '0 15px', textDecoration: 'none', color: 'black', fontWeight: 'bold' }}>Home</a>
+                <a href="#intercambios" style={{ margin: '0 15px', textDecoration: 'none', color: 'black', fontWeight: 'bold' }}>Intercambios</a>
+                <a href="#stock" style={{ margin: '0 15px', textDecoration: 'none', color: 'black', fontWeight: 'bold' }}>Stock</a>
+            </nav>
         </header>
     );
 }
