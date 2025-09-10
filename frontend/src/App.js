@@ -10,6 +10,7 @@ function App() {
         // data.salesLines es un array de arrays
         const allLines = data.salesLines.flat();
         setSalesLines(allLines);
+        console.log(data);
       })
       .catch(err => console.error(err));
   }, []);
@@ -26,6 +27,7 @@ function App() {
             <th>Location Code</th>
             <th>Shortcut Dimension 1 Code</th>
             <th>Document No</th>
+            <th>Description</th>
           </tr>
         </thead>
         <tbody>
@@ -36,6 +38,7 @@ function App() {
               <td>{line.Location_Code}</td>
               <td>{line.Shortcut_Dimension_1_Code}</td>
               <td>{line.Document_No}</td>
+              <td>{line.Description}</td>
             </tr>
           ))}
         </tbody>
