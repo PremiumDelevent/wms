@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Home from './Home';
 import Intercambios from './Intercambios';
+import Stock from './Stock';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -9,6 +10,8 @@ function App() {
     switch(currentPage) {
       case 'intercambios':
         return <Intercambios onNavigate={setCurrentPage} />;
+      case 'stock':
+        return <Stock onNavigate={setCurrentPage} />;
       default:
         return <Home onNavigate={setCurrentPage} />;
     }

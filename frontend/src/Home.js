@@ -18,6 +18,21 @@ function Home({ onNavigate }) {
         >
           Ver Intercambios
         </button>
+
+        <button 
+          onClick={() => onNavigate('stock')}
+          style={{
+            padding: '10px 20px',
+            backgroundColor: '#007bff',
+            color: 'white',
+            border: 'none',
+            borderRadius: '5px',
+            cursor: 'pointer',
+            fontSize: '16px'
+          }}
+        >
+          Ver Stock
+        </button>
       </p>
     </div>
   );
