@@ -1,40 +1,69 @@
 import { useEffect, useState } from "react";
 
-
 function Stock({ onNavigate }) {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true); // 👈 estado de carga
+
   useEffect(() => {
-      fetch("http://localhost:4000/api/products")
-        .then(res => res.json())
-        .then(data => {
-          console.log(data);
-          const allProducts = data.products.flat();
-          setProducts(allProducts);
-        })
-    }, []);
+    fetch("http://localhost:4000/api/products")
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        const allProducts = data.products.flat();
+        setProducts(allProducts);
+        setLoading(false); // 👈 deja de cargar cuando llega la data
+      })
+      .catch(err => {
+        console.error(err);
+        setLoading(false);
+      });
+  }, []);
 
   return (
     <div className="container-1">
 
-        <button 
-          onClick={() => onNavigate('home')}
-          style={{
-            padding: '8px 16px',
-            backgroundColor: '#6c757d',
-            color: 'white',
-            border: 'none',
-            borderRadius: '5px',
-            cursor: 'pointer',
-            fontSize: '14px'
-          }}
-        >
-          ← Volver al inicio
-        </button>
+      <button 
+        onClick={() => onNavigate('home')}
+        style={{
+          padding: '8px 16px',
+          backgroundColor: '#6c757d',
+          color: 'white',
+          border: 'none',
+          borderRadius: '5px',
+          cursor: 'pointer',
+          fontSize: '14px'
+        }}
+      >
+        ← Volver al inicio
+      </button>
 
-        <h1>Stock - WMS PREMIUM DELEVENT</h1>
+      <h1>Stock - WMS PREMIUM DELEVENT</h1>
 
-        <p>Esta es la página de Stock.</p>
-
+      {loading ? (
+        // 👇 Loading effect
+        <div style={{ textAlign: "center", marginTop: "40px" }}>
+          <div 
+            style={{
+              width: "40px",
+              height: "40px",
+              border: "4px solid #ddd",
+              borderTop: "4px solid #6c757d",
+              borderRadius: "50%",
+              margin: "0 auto 15px",
+              animation: "spin 1s linear infinite"
+            }}
+          />
+          <p>Cargando resultados...</p>
+          <style>
+            {`
+              @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+              }
+            `}
+          </style>
+        </div>
+      ) : (
         <table border="1" cellPadding="5" cellSpacing="0">
           <thead>
             <tr>
@@ -45,18 +74,17 @@ function Stock({ onNavigate }) {
             </tr>
           </thead>
           <tbody>
-            {products
-              .map((product, index) => (
-                <tr key={index}>
-                  <td>{product.displayName}</td>
-                  <td>{product.number}</td>
-                  <td>{product.itemCategoryCode}</td>
-                  <td>0</td>
-                </tr>
-              ))}
+            {products.map((product, index) => (
+              <tr key={index}>
+                <td>{product.displayName}</td>
+                <td>{product.number}</td>
+                <td>{product.itemCategoryCode}</td>
+                <td>0</td>
+              </tr>
+            ))}
           </tbody>
         </table>
-
+      )}
     </div>
   );
 }
