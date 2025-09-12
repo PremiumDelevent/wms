@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 function Intercambios({ onNavigate }) {
   const [salesLines, setSalesLines] = useState([]);
-  const [loading, setLoading] = useState(true); // 👈 track loading state
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("http://localhost:4000/api/sales-lines")
@@ -10,7 +10,7 @@ function Intercambios({ onNavigate }) {
       .then(data => {
         const allLines = data.salesLines.flat();
         setSalesLines(allLines);
-        setLoading(false); // 👈 stop loading once data arrives
+        setLoading(false);
       })
       .catch(err => {
         console.error(err);
@@ -40,7 +40,7 @@ function Intercambios({ onNavigate }) {
       <h1>Intercambios - WMS PREMIUM DELEVENT</h1>
 
       {loading ? (
-        // 👇 Loading effect
+
         <div style={{ textAlign: "center", marginTop: "40px" }}>
           <div 
             style={{
